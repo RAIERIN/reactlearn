@@ -1,30 +1,40 @@
 import React, { useReducer } from "react";
 import Context from "./utils/context";
-import * as ACTIONS from "./store/actions/login_actions/login_actions";
+import * as ACTIONS from "./store/actions/actions";
+
 import * as Reducer1 from "./store/reducers/plain_reducer";
 import * as AuthReducer from "./store/reducers/auth_reducer";
 import * as FormReducer from "./store/reducers/form_reducer";
 import Routes from "./routes";
+
 import Auth from "./utils/auth";
 
 const auth = new Auth();
 
 const ContextState = () => {
-  //Plain Reducer
+  /*
+        Plain Reducer
+    */
   const [stateReducer1, dispatchReducer1] = useReducer(
     Reducer1.Reducer1,
-    Reducer1.initalState
+    Reducer1.initialState
   );
 
   const handleDispatchTrue = () => {
+    //    dispatchReducer1(type: "SUCCESS")
+    //    dispatchReducer1(ACTIONS.SUCCESS)
     dispatchReducer1(ACTIONS.success());
   };
 
   const handleDispatchFalse = () => {
+    //     dispatchReducer1(type: "FAILURE")
+    //    dispatchReducer1(ACTIONS.FAILURE)
     dispatchReducer1(ACTIONS.failure());
   };
 
-  //Auth Reducer
+  /*
+      Auth Reducer
+    */
   const [stateAuthReducer, dispatchAuthReducer] = useReducer(
     AuthReducer.AuthReducer,
     AuthReducer.initialState
@@ -45,6 +55,7 @@ const ContextState = () => {
   const handleRemoveProfile = () => {
     dispatchAuthReducer(ACTIONS.remove_profile());
   };
+
   /*
       Form Reducer
     */
@@ -59,12 +70,8 @@ const ContextState = () => {
   };
 
   const handleFormSubmit = event => {
-    //prevents page reloading
     event.preventDefault();
-    //we are using Context and this data is coming from a child component, we have to use this function for the form to function properly.
     event.persist();
-
-    //useContext" is not referring to the hook, it is the user defined id property supplied to the form input element. I decided to name the id “useContext” because the component has 2 other forms as well and they use the "useState" and "useReducer" hooks to save the state and therefore have the id of “useState” and “useReducer”.
     dispatchFormReducer(
       ACTIONS.user_input_submit(event.target.useContext.value)
     );
@@ -111,4 +118,5 @@ const ContextState = () => {
     </div>
   );
 };
+
 export default ContextState;

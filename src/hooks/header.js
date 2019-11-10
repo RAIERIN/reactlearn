@@ -16,13 +16,16 @@ const Header = () => {
       <Link to="/hooksform" style={{ padding: "5px" }}>
         Hooks Form
       </Link>
+      <Link to="/hookscontainer" style={{ padding: "5px" }}>
+        Hooks Container
+      </Link>
       <Link to="/privateroute" style={{ padding: "5px" }}>
         Private Route
       </Link>
       {!context.authState ? (
-        <button onClick={() => context.authObj.login()}>login</button>
+        <button onClick={() => context.authObj.login()}>Login</button>
       ) : (
-        <button onClick={() => context.authObj.login()}>Logout</button>
+        <button onClick={() => context.authObj.logout()}>Logout</button>
       )}
     </div>
   );

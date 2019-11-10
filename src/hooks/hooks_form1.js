@@ -1,5 +1,5 @@
 import React, { useContext, useState, useReducer } from "react";
-import * as ACTIONS from "../store/actions/login_actions/login_actions";
+import * as ACTIONS from "../store/actions/actions";
 import * as FormReducer from "../store/reducers/form_reducer";
 import Context from "../utils/context";
 
@@ -57,6 +57,7 @@ const HooksForm1 = () => {
       <h3>React useState:</h3>
       <p>Change: {valueChange}</p>
       <p>Submit: {valueSubmit}</p>
+      <br />
 
       <h3>React useReducer:</h3>
       <p>Change: {state.user_textChange}</p>
